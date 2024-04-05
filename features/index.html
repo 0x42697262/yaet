@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="`features` is a small library that implements runtime feature toggles for your library or program allowing behavior to be changed on boot or dynamically at runtime using the same compiled binary artifact. This is different from cargo’s feature support which uses conditional compilation."><title>features - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="features" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../static.files/storage-4c98445ec4002617.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../features/index.html">features</a><span class="version">0.10.0</span></h2></div><div class="sidebar-elems"><ul class="block">
+            <li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#macros">Macros</a></li></ul></section></div></nav><div class="sidebar-resizer"></div>
+    <main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../features/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">features</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../src/features/lib.rs.html#8-304">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p><code>features</code> is a small library that implements runtime <a href="https://martinfowler.com/articles/feature-toggles.html">feature toggles</a> for
+your library or program allowing behavior to be changed on boot or dynamically at runtime using
+the same compiled binary artifact. This is different from cargo’s <a href="http://doc.crates.io/manifest.html#the-features-section">feature</a>
+support which uses conditional compilation.</p>
+<p>At its core, it is a macro (<code>features!</code>) that takes a collection of feature flag names which it
+uses to generate a module containing a function to enable a feature toggle (<code>::enable()</code>), a
+function to disable a feature toggle (<code>::disable()</code>) and a function to check if a feature
+toggle is enabled (<code>::is_enabled()</code>).</p>
+<h3 id="example"><a class="doc-anchor" href="#example">§</a>Example</h3>
+<p>Basic example:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[macro_use]
+</span><span class="kw">extern crate </span>bitflags;
+<span class="attr">#[macro_use]
+</span><span class="kw">extern crate </span>features;
+
+<span class="macro">features! </span>{
+    <span class="kw">pub mod </span>feature {
+        <span class="kw">const </span>Alpha = <span class="number">0b00000001</span>,
+        <span class="kw">const </span>Beta = <span class="number">0b00000010
+    </span>}
+}
+
+<span class="kw">fn </span>main() {
+    <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, feature::is_enabled(feature::Alpha));
+    <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, feature::is_enabled(feature::Beta));
+
+    feature::enable(feature::Beta);
+    <span class="macro">assert_eq!</span>(<span class="bool-val">false</span>, feature::is_enabled(feature::Alpha));
+    <span class="macro">assert_eq!</span>(<span class="bool-val">true</span>, feature::is_enabled(feature::Beta));
+}</code></pre></div>
+<p>Multiple feature sets:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#[macro_use]
+</span><span class="kw">extern crate </span>bitflags;
+<span class="attr">#[macro_use]
+</span><span class="kw">extern crate </span>features;
+
+<span class="macro">features! </span>{
+    <span class="kw">pub mod </span>ux {
+        <span class="kw">const </span>JsonOutput = <span class="number">0b10000000</span>,
+        <span class="kw">const </span>VerboseOutput = <span class="number">0b01000000
+    </span>}
+}
+
+<span class="macro">features! </span>{
+    <span class="kw">pub mod </span>srv {
+        <span class="kw">const </span>Http2Downloading = <span class="number">0b10000000</span>,
+        <span class="kw">const </span>BitTorrentDownloading = <span class="number">0b01000000
+    </span>}
+}
+
+<span class="kw">fn </span>main() {
+    <span class="comment">// Parse CLI args, environment, read config file etc...
+    </span>srv::enable(srv::BitTorrentDownloading);
+    ux::enable(ux::JsonOutput);
+
+    <span class="kw">if </span>srv::is_enabled(srv::Http2Downloading) {
+        <span class="macro">println!</span>(<span class="string">"Downloading via http2..."</span>);
+    } <span class="kw">else if </span>srv::is_enabled(srv::BitTorrentDownloading) {
+        <span class="macro">println!</span>(<span class="string">"Downloading via bit torrent..."</span>);
+    } <span class="kw">else </span>{
+        <span class="macro">println!</span>(<span class="string">"Downloading the old fashioned way..."</span>);
+    }
+
+    <span class="kw">if </span>ux::is_enabled(ux::VerboseOutput) {
+        <span class="macro">println!</span>(<span class="string">"COOL"</span>);
+    }
+}</code></pre></div>
+<h3 id="feature-toggle-references"><a class="doc-anchor" href="#feature-toggle-references">§</a>Feature Toggle References</h3>
+<p>Here are some articles and projects which insipred the implementation of <code>features</code>:</p>
+<ul>
+<li><a href="https://martinfowler.com/articles/feature-toggles.html">Feature Toggles</a> (Martin Fowler’s
+blog)</li>
+<li><a href="https://blog.travis-ci.com/2014-03-04-use-feature-flags-to-ship-changes-with-confidence/">Using Feature Flags to Ship Changes with
+Confidence</a>
+(TravisCI’s blog)</li>
+<li><a href="http://swreflections.blogspot.ca/2014/08/feature-toggles-are-one-of-worst-kinds.html">Feature Toggles are one of the worst kinds of Technical
+Debt</a>
+(excellent cautionary tale and warning)</li>
+<li><a href="https://en.wikipedia.org/wiki/Feature_toggle">Feature toggle</a> (Wikipedia article)</li>
+<li><a href="https://github.com/mgsnova/feature">Ruby feature gem</a> (nice prior art)</li>
+</ul>
+</div></details><h2 id="macros" class="section-header">Macros<a href="#macros" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="macro" href="macro.features.html" title="macro features::features">features</a></div><div class="desc docblock-short">The <code>features!</code> macro generates a module to contain all feature toggling logic.</div></li></ul></section></div></main></body></html>
