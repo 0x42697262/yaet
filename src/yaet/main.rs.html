@@ -260,6 +260,45 @@
 <a href="#258" id="258">258</a>
 <a href="#259" id="259">259</a>
 <a href="#260" id="260">260</a>
+<a href="#261" id="261">261</a>
+<a href="#262" id="262">262</a>
+<a href="#263" id="263">263</a>
+<a href="#264" id="264">264</a>
+<a href="#265" id="265">265</a>
+<a href="#266" id="266">266</a>
+<a href="#267" id="267">267</a>
+<a href="#268" id="268">268</a>
+<a href="#269" id="269">269</a>
+<a href="#270" id="270">270</a>
+<a href="#271" id="271">271</a>
+<a href="#272" id="272">272</a>
+<a href="#273" id="273">273</a>
+<a href="#274" id="274">274</a>
+<a href="#275" id="275">275</a>
+<a href="#276" id="276">276</a>
+<a href="#277" id="277">277</a>
+<a href="#278" id="278">278</a>
+<a href="#279" id="279">279</a>
+<a href="#280" id="280">280</a>
+<a href="#281" id="281">281</a>
+<a href="#282" id="282">282</a>
+<a href="#283" id="283">283</a>
+<a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
+<a href="#291" id="291">291</a>
+<a href="#292" id="292">292</a>
+<a href="#293" id="293">293</a>
+<a href="#294" id="294">294</a>
+<a href="#295" id="295">295</a>
+<a href="#296" id="296">296</a>
+<a href="#297" id="297">297</a>
+<a href="#298" id="298">298</a>
+<a href="#299" id="299">299</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>clap::{builder::PossibleValuesParser, Parser};
 <span class="kw">use </span>std::path::PathBuf;
 
@@ -387,6 +426,15 @@ This prototype tool is intended solely for educational purposes within the CMSC 
     ///
     </span><span class="attr">#[arg(long, short = <span class="string">'o'</span>, visible_aliases = [<span class="string">"out"</span>]</span>)]
     output: <span class="prelude-ty">Option</span>&lt;PathBuf&gt;,
+
+    <span class="doccomment">/// Option to skip integrity check.
+    ///
+    /// When enabled, this option ignores the signature of the encrypted message and proceeds to return the decrypted message without performing signature verification.
+    ///
+    /// By default, this option is set to `false`.
+    ///
+    </span><span class="attr">#[arg(long, short = <span class="string">'x'</span>, default_value = <span class="string">"false"</span>, visible_aliases = [<span class="string">"skip"</span>]</span>)]
+    skip_verification: bool,
 }
 
 <span class="doccomment">/// Generate new keypairs for encryption and signing.
@@ -428,7 +476,29 @@ This prototype tool is intended solely for educational purposes within the CMSC 
     bits: String,
 }
 
-<span class="kw">fn </span>main() {
+<span class="doccomment">/// The main function parses command line arguments using the `Cli` struct, then proceeds to execute the specified command.
+///
+/// # Arguments
+///
+/// - `cli`: An instance of the `Cli` struct containing parsed command line arguments.
+///
+/// # Command Handling
+///
+/// The function matches the command specified in the `Params` enum and executes the corresponding logic:
+///
+/// - **Encrypt**: Reads the input message from a file, encrypts it using the provided public key and signing key, and optionally saves the encrypted message to an output file.
+/// - **Decrypt**: Reads the encrypted message from a file, decrypts it using the provided private key and verifying key, and optionally saves the decrypted message to an output file. It also supports skipping signature verification if specified.
+/// - **Generate**: Generates private and public RSA key pairs and private and public signature key pairs, saving them to specified output files.
+///
+/// # Debug Mode
+///
+/// If debug mode is enabled (`cli.debug`), the function prints debug information including input/output paths and skip verification flag.
+///
+/// # Errors
+///
+/// If any errors occur during command execution, they are printed to standard error output.
+///
+</span><span class="kw">fn </span>main() {
     <span class="kw">let </span>cli: Cli = Cli::parse();
 
     <span class="kw">match </span>cli.param {
@@ -459,15 +529,23 @@ This prototype tool is intended solely for educational purposes within the CMSC 
             <span class="kw">let </span>private_key: PathBuf = args.private_key;
             <span class="kw">let </span>signature: PathBuf = args.verifying_key;
             <span class="kw">let </span>output: PathBuf = args.output.unwrap_or_default();
+            <span class="kw">let </span>skip_verification: bool = args.skip_verification;
 
             <span class="kw">if </span>cli.debug {
                 <span class="macro">println!</span>(<span class="string">"Message: {:?}"</span>, message);
                 <span class="macro">println!</span>(<span class="string">"Private key: {:#?}"</span>, private_key);
                 <span class="macro">println!</span>(<span class="string">"Signature: {:#?}"</span>, signature);
                 <span class="macro">println!</span>(<span class="string">"Output: {:#?}"</span>, output);
+                <span class="macro">println!</span>(<span class="string">"Skip verification: {:#?}"</span>, skip_verification);
             }
 
-            <span class="kw">match </span>utils::generate_decrypted_message(<span class="kw-2">&amp;</span>message, <span class="kw-2">&amp;</span>private_key, <span class="kw-2">&amp;</span>signature, <span class="kw-2">&amp;</span>output) {
+            <span class="kw">match </span>utils::generate_decrypted_message(
+                <span class="kw-2">&amp;</span>message,
+                <span class="kw-2">&amp;</span>private_key,
+                <span class="kw-2">&amp;</span>signature,
+                <span class="kw-2">&amp;</span>output,
+                skip_verification,
+            ) {
                 <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
                 <span class="prelude-val">Err</span>(err) =&gt; {
                     <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err)

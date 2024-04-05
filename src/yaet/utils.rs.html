@@ -412,8 +412,19 @@
 <a href="#410" id="410">410</a>
 <a href="#411" id="411">411</a>
 <a href="#412" id="412">412</a>
+<a href="#413" id="413">413</a>
+<a href="#414" id="414">414</a>
+<a href="#415" id="415">415</a>
+<a href="#416" id="416">416</a>
+<a href="#417" id="417">417</a>
+<a href="#418" id="418">418</a>
+<a href="#419" id="419">419</a>
+<a href="#420" id="420">420</a>
+<a href="#421" id="421">421</a>
+<a href="#422" id="422">422</a>
+<a href="#423" id="423">423</a>
+<a href="#424" id="424">424</a>
 </pre></div><pre class="rust"><code><span class="doccomment">/// Helper functions are defined here.
-
 </span><span class="kw">use </span>pkcs8::DecodePublicKey;
 <span class="kw">use </span>rsa::sha2::Sha256;
 <span class="kw">use </span>rsa::signature::{RandomizedSigner, SignatureEncoding, Verifier};
@@ -525,14 +536,16 @@
 ///
 </span><span class="kw">pub fn </span>generate_private_key(output: <span class="kw-2">&amp;</span>PathBuf, bits: usize) -&gt; <span class="prelude-ty">Result</span>&lt;(), io::Error&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>rng = rand::rngs::OsRng;
-    <span class="kw">let </span>private_key = RsaPrivateKey::new(<span class="kw-2">&amp;mut </span>rng, bits)
-        .map_err(|err| std::io::Error::new(std::io::ErrorKind::Other, err.to_string()))<span class="question-mark">?</span>; <span class="comment">// returns an error when the key can't
-                                                                                          // be generated
-    </span>private_key
-        .write_pkcs8_pem_file(output, LineEnding::default())
-        .map_err(|err| std::io::Error::new(std::io::ErrorKind::Other, err.to_string()))<span class="question-mark">?</span>; <span class="comment">// returns an error when the key can't be written
+    <span class="kw">let </span>private_key = <span class="kw">match </span>RsaPrivateKey::new(<span class="kw-2">&amp;mut </span>rng, bits) {
+        <span class="prelude-val">Ok</span>(pkey) =&gt; pkey,
+        <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::Other, err.to_string())),
+    };
+    <span class="kw">match </span>private_key.write_pkcs8_pem_file(output, LineEnding::default()) {
+        <span class="prelude-val">Ok</span>(pkey) =&gt; pkey,
+        <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::Other, err.to_string())),
+    };
 
-    </span><span class="prelude-val">Ok</span>(())
+    <span class="prelude-val">Ok</span>(())
 }
 
 <span class="doccomment">/// Generate a Public RSA key
@@ -564,17 +577,20 @@
 /// ```
 ///
 </span><span class="kw">pub fn </span>generate_public_key(private_key_path: <span class="kw-2">&amp;</span>PathBuf) -&gt; <span class="prelude-ty">Result</span>&lt;(), io::Error&gt; {
-    <span class="kw">let </span>private_key = RsaPrivateKey::read_pkcs8_pem_file(private_key_path)
-        .map_err(|err| std::io::Error::new(std::io::ErrorKind::Other, err.to_string()))<span class="question-mark">?</span>; <span class="comment">// returns an error when the key can't
-                                                                                          // be generated
-    </span><span class="kw">let </span>public_key = RsaPublicKey::from(<span class="kw-2">&amp;</span>private_key);
+    <span class="kw">let </span>private_key = <span class="kw">match </span>RsaPrivateKey::read_pkcs8_pem_file(private_key_path) {
+        <span class="prelude-val">Ok</span>(pkey) =&gt; pkey,
+        <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::Other, err.to_string())),
+    };
+
+    <span class="kw">let </span>public_key = RsaPublicKey::from(<span class="kw-2">&amp;</span>private_key);
 
     <span class="kw">let </span>output: PathBuf = append_to_path(private_key_path, <span class="string">".pub"</span>);
-    public_key
-        .write_public_key_pem_file(output, LineEnding::default()) <span class="comment">// Save public key to file
-        </span>.map_err(|err| std::io::Error::new(std::io::ErrorKind::Other, err.to_string()))<span class="question-mark">?</span>; <span class="comment">// returns an error when the key can't be written
+    <span class="kw">match </span>public_key.write_public_key_pem_file(output, LineEnding::default()) {
+        <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+        <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::Other, err.to_string())),
+    };
 
-    </span><span class="prelude-val">Ok</span>(())
+    <span class="prelude-val">Ok</span>(())
 }
 
 <span class="doccomment">/// Encrypts then signs a plain text message.
@@ -648,6 +664,7 @@
 /// * `signature_path` - The path to the file containing the public key used for signature verification.
 /// * `output` - The path to the file where the decrypted message will be written. If empty, the message
 ///              will be printed to standard output.
+/// * `skip_verification` - Skips verification of the message integrity
 ///
 /// # Returns
 ///
@@ -658,6 +675,7 @@
     private_key_path: <span class="kw-2">&amp;</span>Path,
     signature_path: <span class="kw-2">&amp;</span>Path,
     output: <span class="kw-2">&amp;</span>Path,
+    skip_verification: bool,
 ) -&gt; <span class="prelude-ty">Result</span>&lt;(), io::Error&gt; {
     <span class="kw">let </span>private_key = <span class="kw">match </span>RsaPrivateKey::read_pkcs8_pem_file(private_key_path) {
         <span class="prelude-val">Ok</span>(pkey) =&gt; pkey,
@@ -677,10 +695,16 @@
         <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::Other, err.to_string())),
     };
 
-    <span class="kw">let </span>digital_signature = rsa::pss::Signature::try_from(signed_message)
-        .map_err(|err| std::io::Error::new(std::io::ErrorKind::Other, err.to_string()))<span class="question-mark">?</span>;
-    verify_message_with_rsassa_pss(signature, <span class="kw-2">&amp;</span>decrypted_data, digital_signature)
-        .map_err(|err| std::io::Error::new(std::io::ErrorKind::Other, err.to_string()))<span class="question-mark">?</span>;
+    <span class="kw">if </span>!skip_verification {
+        <span class="kw">let </span>digital_signature = <span class="kw">match </span>rsa::pss::Signature::try_from(signed_message) {
+            <span class="prelude-val">Ok</span>(pkey) =&gt; pkey,
+            <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::Other, err.to_string())),
+        };
+        <span class="kw">match </span>verify_message_with_rsassa_pss(signature, <span class="kw-2">&amp;</span>decrypted_data, digital_signature) {
+            <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
+            <span class="prelude-val">Err</span>(err) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(io::ErrorKind::Other, err.to_string())),
+        };
+    }
 
     <span class="comment">// Write to standard output
     </span><span class="kw">if </span>output.to_string_lossy().len() == <span class="number">0 </span>{
