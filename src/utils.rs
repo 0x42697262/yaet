@@ -1,5 +1,15 @@
-/// Helper functions are defined here.
+#![cfg_attr(docsrs, feature(doc_auto_cfg))]
+#![doc = include_str!("../README.md")]
+#![warn(missing_docs)]
+
+//! Helper functions are defined here.
+use argon2::{
+    password_hash::{rand_core::OsRng, PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
+    Argon2,
+};
 use pkcs8::DecodePublicKey;
+use aes::Aes256;
+use cbc;
 use rsa::sha2::Sha256;
 use rsa::signature::{RandomizedSigner, SignatureEncoding, Verifier};
 use rsa::{
@@ -108,7 +118,11 @@ pub fn append_to_path(path: impl Into<OsString>, suffix: impl AsRef<OsStr>) -> P
 /// }
 ///  ```
 ///
-pub fn generate_private_key(output: &PathBuf, bits: usize) -> Result<(), io::Error> {
+pub fn generate_private_key(
+    output: &PathBuf,
+    bits: usize,
+    password: &[u8],
+) -> Result<(), io::Error> {
     let mut rng = rand::rngs::OsRng;
     let private_key = match RsaPrivateKey::new(&mut rng, bits) {
         Ok(pkey) => pkey,
@@ -118,6 +132,13 @@ pub fn generate_private_key(output: &PathBuf, bits: usize) -> Result<(), io::Err
         Ok(pkey) => pkey,
         Err(err) => return Err(io::Error::new(io::ErrorKind::Other, err.to_string())),
     };
+
+    if !password.is_empty() {
+        let hashed_password: [u8; 256] = match lock(password) {
+            Ok(pw) => pw,
+            Err(err) => return Err(io::Error::new(io::ErrorKind::Other, err.to_string())),
+        };
+    }
 
     Ok(())
 }
@@ -421,4 +442,19 @@ pub fn verify_message_with_rsassa_pss(
 ) -> Result<(), rsa::signature::Error> {
     let verifying_key = VerifyingKey::<Sha256>::new(key);
     verifying_key.verify(decrypted_message, &signature)
+}
+
+/// Encrypts data with password.
+///
+pub fn lock(password: &[u8]) -> Result<[u8; 256], io::Error> {
+    let salted = SaltString::generate(&mut OsRng);
+    let salt: &[u8] = salted.as_ref().as_bytes();
+    let mut hashed_password = [0u8; 256];
+
+    match Argon2::default().hash_password_into(password, salt, &mut hashed_password) {
+        Ok(_) => {}
+        Err(err) => return Err(io::Error::new(io::ErrorKind::Other, err.to_string())),
+    };
+
+    Ok(hashed_password)
 }

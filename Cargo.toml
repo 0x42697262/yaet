@@ -12,6 +12,9 @@ panic = 'abort'     # Abort on panic
 strip = true        # Strip symbols from binary*
 
 [dependencies]
+aes = "0.8.4"
+argon2 = "0.5.3"
+cbc = "0.1.2"
 clap = { version = "4.5.4", features = ["derive", "cargo"] }
 features = "0.10.0"
 home = "0.5.9"
