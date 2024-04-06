@@ -20,7 +20,7 @@ var srcIndex = new Map(JSON.parse('[\
 ["digest",["",[["core_api",[],["ct_variable.rs","rt_variable.rs","wrapper.rs","xof_reader.rs"]]],["core_api.rs","digest.rs","lib.rs"]]],\
 ["features",["",[],["lib.rs"]]],\
 ["generic_array",["",[],["arr.rs","functional.rs","hex.rs","impls.rs","iter.rs","lib.rs","sequence.rs"]]],\
-["getrandom",["",[],["error.rs","error_impls.rs","lazy.rs","lib.rs","linux_android.rs","use_file.rs","util.rs","util_libc.rs"]]],\
+["getrandom",["",[],["error.rs","error_impls.rs","lazy.rs","lib.rs","linux_android_with_fallback.rs","use_file.rs","util.rs","util_libc.rs"]]],\
 ["heck",["",[],["kebab.rs","lib.rs","lower_camel.rs","shouty_kebab.rs","shouty_snake.rs","snake.rs","title.rs","train.rs","upper_camel.rs"]]],\
 ["home",["",[],["env.rs","lib.rs"]]],\
 ["lazy_static",["",[],["core_lazy.rs","lib.rs"]]],\

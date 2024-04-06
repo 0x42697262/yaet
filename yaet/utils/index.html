@@ -1,2 +1,260 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `utils` mod in crate `yaet`."><title>yaet::utils - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="yaet" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../yaet/index.html">yaet</a><span class="version">0.2.0</span></h2></div><h2 class="location"><a href="#">Module utils</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#functions">Functions</a></li></ul></section><h2><a href="../index.html">In crate yaet</a></h2></div></nav><div class="sidebar-resizer"></div>
-    <main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../yaet/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">yaet</a>::<wbr><a class="mod" href="#">utils</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/yaet/utils.rs.html#1-424">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><h2 id="functions" class="section-header">Functions<a href="#functions" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.append_to_path.html" title="fn yaet::utils::append_to_path">append_to_path</a></div><div class="desc docblock-short">Appends a string <code>suffix</code> to a path <code>path</code> and returns the resulting <code>PathBuf</code>.</div></li><li><div class="item-name"><a class="fn" href="fn.decrypt_message_rsa_oaep.html" title="fn yaet::utils::decrypt_message_rsa_oaep">decrypt_message_rsa_oaep</a></div><div class="desc docblock-short">Decrypts a message encrypted using RSA-OAEP.</div></li><li><div class="item-name"><a class="fn" href="fn.encrypt_message_rsa_oaep.html" title="fn yaet::utils::encrypt_message_rsa_oaep">encrypt_message_rsa_oaep</a></div><div class="desc docblock-short">Encrypts a message using RSA-OAEP.</div></li><li><div class="item-name"><a class="fn" href="fn.generate_decrypted_message.html" title="fn yaet::utils::generate_decrypted_message">generate_decrypted_message</a></div><div class="desc docblock-short">Decrypts a previously encrypted and signed message.</div></li><li><div class="item-name"><a class="fn" href="fn.generate_encrypted_message.html" title="fn yaet::utils::generate_encrypted_message">generate_encrypted_message</a></div><div class="desc docblock-short">Encrypts then signs a plain text message.</div></li><li><div class="item-name"><a class="fn" href="fn.generate_private_key.html" title="fn yaet::utils::generate_private_key">generate_private_key</a></div><div class="desc docblock-short">Generate a Private RSA key</div></li><li><div class="item-name"><a class="fn" href="fn.generate_public_key.html" title="fn yaet::utils::generate_public_key">generate_public_key</a></div><div class="desc docblock-short">Generate a Public RSA key</div></li><li><div class="item-name"><a class="fn" href="fn.print_raw_data.html" title="fn yaet::utils::print_raw_data">print_raw_data</a></div></li><li><div class="item-name"><a class="fn" href="fn.read_input.html" title="fn yaet::utils::read_input">read_input</a></div></li><li><div class="item-name"><a class="fn" href="fn.read_input_raw.html" title="fn yaet::utils::read_input_raw">read_input_raw</a></div></li><li><div class="item-name"><a class="fn" href="fn.sign_message_with_rsassa_pss.html" title="fn yaet::utils::sign_message_with_rsassa_pss">sign_message_with_rsassa_pss</a></div><div class="desc docblock-short">Signs a message using the RSASSA-PSS signature scheme with blinding for enhanced security.</div></li><li><div class="item-name"><a class="fn" href="fn.verify_message_with_rsassa_pss.html" title="fn yaet::utils::verify_message_with_rsassa_pss">verify_message_with_rsassa_pss</a></div><div class="desc docblock-short">Verifies the authenticity of a message using the RSASSA-PSS signature scheme.</div></li></ul></section></div></main></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Yet Another Encryption Tool! (yaet)"><title>yaet::utils - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="yaet" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../yaet/index.html">yaet</a><span class="version">0.2.0</span></h2></div><h2 class="location"><a href="#">Module utils</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#functions">Functions</a></li></ul></section><h2><a href="../index.html">In crate yaet</a></h2></div></nav><div class="sidebar-resizer"></div>
+    <main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../yaet/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">yaet</a>::<wbr><a class="mod" href="#">utils</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/yaet/utils.rs.html#1-428">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="yet-another-encryption-tool-yaet"><a class="doc-anchor" href="#yet-another-encryption-tool-yaet">§</a>Yet Another Encryption Tool! (yaet)</h2>
+<p><strong>Yet Another Encryption Tool!</strong> (yaet) is a command-line tool designed for encrypting and decrypting messages using RSA-OAEP implementation with verification/authenticity.
+It provides a simple and secure way to protect sensitive data using asymmetric encryption.</p>
+<blockquote>
+<p>[!WARNING]</p>
+<p>This tool is a prototype intended solely for educational purposes within the CMSC 134 Intro to Cybersecurity course.
+It is not suitable for production use.</p>
+</blockquote>
+<p>Main repository is hosted on <a href="https://github.com/0x42697262/yaet">Github</a>.
+Please see the <a href="https://github.com/0x42697262/yaet/releases/latest">latest</a> release for downloads.</p>
+<h3 id="features"><a class="doc-anchor" href="#features">§</a>Features</h3>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+Generate new key pairs for encryption and signing.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Encrypt plaintext messages using RSA-OAEP encryption algorithm.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Decrypt ciphertext messages using RSA-OAEP decryption algorithm.</li>
+<li><input disabled="" type="checkbox" checked=""/>
+Verify the authenticity of encrypted messages through digital signatures.</li>
+<li><input disabled="" type="checkbox"/>
+Can identify your mom</li>
+</ul>
+<h3 id="building"><a class="doc-anchor" href="#building">§</a>Building</h3>
+<p>You must have a working Rust environment installed on your computer.
+See how to install Rust using <a href="https://rustup.rs/">rustup</a>.</p>
+<ol>
+<li>Clone the repository:</li>
+</ol>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ git clone https:<span class="comment">//github.com/0x42697262/yaet.git</span></code></pre></div>
+<ol start="2">
+<li>Navigate to the project directory:</li>
+</ol>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ cd yaet</code></pre></div>
+<ol start="3">
+<li>Build the project:</li>
+</ol>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ cargo build --release</code></pre></div>
+<ol start="4">
+<li>Run the executable:</li>
+</ol>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ ./target/release/yaet --help</code></pre></div>
+<p>Alternatively, you can directly run the tool without building.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ cargo run -- help</code></pre></div>
+<h3 id="documentation"><a class="doc-anchor" href="#documentation">§</a>Documentation</h3>
+<p>Check the full documentation <a href="https://0x42697262.github.io/yaet/yaet/">here</a>.</p>
+<h3 id="usage"><a class="doc-anchor" href="#usage">§</a>Usage</h3>
+<p>Sample keys and signatures are provided in the <a href="./examples/">examples</a> directory.</p>
+<h4 id="help-1"><a class="doc-anchor" href="#help-1">§</a>Help</h4>
+<p>To show the available commands, run</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ yaet help</code></pre></div>
+<p>This will output the help manual</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>Usage: yaet [OPTIONS] &lt;COMMAND&gt;
+
+Commands:
+  decrypt   Decrypt an encrypted message [aliases: dec]
+  encrypt   Encrypt a message [aliases: enc]
+  generate  Generate private and public keys [aliases: gen]
+  help      Print this message or the help of the given subcommand(s)
+
+Options:
+      --debug    Enable debug prints
+  -h, --help     Print help
+  -V, --version  Print version</code></pre></div>
+<h4 id="generating-keys"><a class="doc-anchor" href="#generating-keys">§</a>Generating keys</h4>
+<p>To generate the two key pairs, run</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ yaet generate --output chicken
+Generating private and public RSA keys...
+Saved <span class="string">"chicken"
+</span>Generating private and public signature keys...
+Saved <span class="string">"chicken.sig"
+
+</span>$ ls
+chicken
+chicken.<span class="kw">pub
+</span>chicken.sig
+chicken.sig.<span class="kw">pub</span></code></pre></div>
+<p>It’s possible to generate a key with shorthand method</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ yaet gen -o chicken</code></pre></div>
+<h4 id="encrypting-messages"><a class="doc-anchor" href="#encrypting-messages">§</a>Encrypting messages</h4>
+<p>To encrypt a message, you will need the public key of the receiver and your signing key.</p>
+<p>See the help options for <code>encrypt</code></p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ yaet help encrypt
+Usage: yaet encrypt [OPTIONS] --public-key &lt;PUBLIC_KEY&gt; --signing-key &lt;SIGNING_KEY&gt; [FILE]
+
+Arguments:
+  [FILE]
+          Specifies the input file containing plaintext.
+          
+          You can provide a file path <span class="kw">as </span>the input source. Alternatively, you can directly pipe the output of another command to this argument.
+
+Options:
+  -p, --public-key &lt;PUBLIC_KEY&gt;
+          The recipient<span class="lifetime">'s </span>public RSA key.
+          
+          The public key is used to encrypt the message.
+          
+          [aliases: public, key, pkey, pk]
+
+  -s, --signing-key &lt;SIGNING_KEY&gt;
+          Your private key signature.
+          
+          The private key signature is used <span class="kw">for </span>authenticity and integrity of your message.
+          
+          [aliases: signature, sig]
+
+  -o, --output &lt;OUTPUT&gt;
+          Output to a FILE
+          
+          Specify the file path <span class="kw">for </span>the output of the encrypted message.
+          
+          [aliases: out]
+
+  -h, --help
+          Print help (see a summary with <span class="string">'-h'</span>)</code></pre></div>
+<p>This will automatically write the encrypted message along with the signature as one.</p>
+<blockquote>
+<p>[!NOTE]
+This tool will only write the encrypted data in raw format!</p>
+</blockquote>
+<h5 id="encrypting-a-file"><a class="doc-anchor" href="#encrypting-a-file">§</a>Encrypting a file</h5>
+<p>To encrypt a file, run the following command</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ yaet enc --public-key receiver.<span class="kw">pub </span>--signing-key chicken.sig message.txt</code></pre></div>
+<p>The encrypted message will be printed directly to your terminal in raw bytes.
+To make the output readable in string format, you can pipe it to the <code>base64</code> command.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ yaet enc --public-key receiver.<span class="kw">pub </span>--signing-key chicken.sig message.txt | base64
+TzRu8Ky5p8exu5eFsRDUVDndkV1N7WozY8Q9H/<span class="number">9tsMYinQyj2qyVzgKz4Mr</span>/wIZh69zKmThhvj5G
+xK1nZbpVKzD16hKX8xYjglYcPJK0+AiqHmNj9FaBiJT+YNFULttMiiwUH4gdmi9EcNLP0txfZrbT
+riDhSjzXzwbJby7aUDOTYMMZ3Ikgkt97ADvB4Q6VzI7p3a2Zc248dK4m4a3QlfUTaas4jjEn6sfK
+Yt56OI6Sl3Lu+yXMPC/FhB1D6i/rdBkR4VqXE9VldiKdofUYCex7nvcP0mk/aMLdVeJQ01aofz+U
+UhQlRq1F7IvDLb3eyOaOXjW9blid5SG2bFCgP6nXB1S+MS9I+aYzdmm0NgVF/LL2IWwacA+F94ME
+/<span class="number">7acMd8tYWSfkgzvjvRbbqltp5Qf5BTruZr9DcuOhMMOCeI</span>/tyB0DEhsTYUCHtey4l/Mz45mnMLq
+w5YvWCn8wsGp+mZXnda2Lt9VNotzeIiLsPrBDz4nJP+pEnt69GeJCXh92kOjbCaY8IcGogN/uPdd
++MdP/EJn/DHO1mm/Ww==</code></pre></div>
+<h5 id="encrypting-from-standard-input"><a class="doc-anchor" href="#encrypting-from-standard-input">§</a>Encrypting from standard input</h5>
+<p>If no file path is provided, YAET will automatically use standard input.
+Hit <code>^D</code> to encrypt.</p>
+<p>Certainly, one could also do piping</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ echo <span class="string">"Hello, There!" </span>| yaet enc --public-key receiver.<span class="kw">pub </span>--signing-key chicken.sig | base64
+WARIqhadDNZaqJCyh/jphe1QtrXuME+QtrNxIl81lVAu8TK3P1knLsofQWoqHLEcRi336wUqKdbP
+pCEG6z52f7feDjVri8FOSPthCpTTc+DTYUYzCwhq+h9RRm4CkryCr7fb7GuMQC0OSyRjEGLiP/Ha
+<span class="number">0tqUlW6b1BPgEcNIxFUShHMqTLY</span>/ksj6dV+FN/ScApYkKBgIWEnq/BOZtu1P7kvcaY8kPYr4Uc37
+CWw7g6IlB5BSZbdXv/QFPsxYlBi43hSWS9j7kDBp2sc2yOCYnUaFH4U5OSS0jdQKfpIPKbSkOEtN
+EdGGXAKL+/bCEwuSSzzxG4cVYnqGjjCsFavRvRe6oc8hXxTWRPS0EOUAVV9EJLFuole72p<span class="comment">//YPqI
+</span>toUJEQo3cx/soCoRzSlLNc7PNc4IqeMuM5XCkE2xQYQcfwXg2oNImBRDPmK5XyBWYZQspYBGH4dw
+Za/jriEVJZvqA/jkM8zbhHpYIvw2CmFQ4WqK/J9rl9LY7qSIAT/qT/<span class="number">1DOKtfFTswHNO3nX1kK</span>+cR
+qgbkS0S1ROHfkGpZNg==</code></pre></div>
+<h5 id="saving-to-a-file"><a class="doc-anchor" href="#saving-to-a-file">§</a>Saving to a file</h5>
+<p>To save the encrypted message, simply append the <code>--output secret_message</code> parameter.</p>
+<p>If you want to save the file encoded in base64, try this.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ yaet enc --public-key receiver.<span class="kw">pub </span>--signing-key chicken.sig message.txt | base64 &gt; secretv2</code></pre></div>
+<h4 id="decrypting-secret-messages"><a class="doc-anchor" href="#decrypting-secret-messages">§</a>Decrypting secret messages</h4>
+<p>Print out the help usage for <code>decryption</code> for more details.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>Usage: yaet decrypt [OPTIONS] --private-key &lt;PRIVATE_KEY&gt; --verifying-key &lt;VERIFYING_KEY&gt; [FILE]
+
+Arguments:
+  [FILE]
+          Specifies the input file containing ciphertext message.
+          
+          You can provide a file path <span class="kw">as </span>the input source. Alternatively, you can directly pipe the output of another command to this argument.
+
+Options:
+  -p, --private-key &lt;PRIVATE_KEY&gt;
+          Your RSA private key to decrypt the message.
+          
+          The private key is used to decrypt the message.
+          
+          [aliases: private, key, pkey, pk]
+
+  -s, --verifying-key &lt;VERIFYING_KEY&gt;
+          The recipient<span class="lifetime">'s </span>public key signature.
+          
+          The public key signature is used <span class="kw">for </span>authenticity and integrity of the received encrypted message.
+          
+          [aliases: signature, sig]
+
+  -o, --output &lt;OUTPUT&gt;
+          Output to a FILE
+          
+          Specify the file path <span class="kw">for </span>the output of the encrypted message.
+          
+          [aliases: out]
+
+  -x, --skip-verification
+          <span class="prelude-ty">Option </span>to skip integrity check.
+          
+          When enabled, this option ignores the signature of the encrypted message and proceeds to <span class="kw">return </span>the decrypted message without performing signature verification.
+          
+          By default, this option is set to `<span class="bool-val">false</span>`.
+          
+          [aliases: skip]
+
+  -h, --help
+          Print help (see a summary with <span class="string">'-h'</span>)</code></pre></div>
+<p>This will decrypt the message using the specified private key and verify its authenticity with the provided verifying key.
+If successful, the decrypted message will be printed to the terminal.
+If not, an error message will be displayed.</p>
+<p>To decrypt an encrypted message from a file, you can run the following command</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ yaet decrypt --private-key chicken --verifying-key receiver.sig.<span class="kw">pub </span>secret
+Hello, <span class="macro">There!</span></code></pre></div>
+<p>This is on the assumption that the input file is saved as raw bytes, not encoded in base64.
+To decrypt from base64, just pipe it</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>$ cat secretv2 | base64 -d | yaet decrypt --private-key chicken --verifying-key receiver.sig.<span class="kw">pub
+</span>Hello, <span class="macro">There!</span></code></pre></div>
+<h3 id="methodology"><a class="doc-anchor" href="#methodology">§</a>Methodology</h3><h4 id="key-pair-generation"><a class="doc-anchor" href="#key-pair-generation">§</a>Key pair generation</h4>
+<p><strong>YAET</strong> facilitates the generation of RSA key pairs, comprising both private and public keys.
+While having the flexibility to specify the size of the private keys: <code>1024 bits</code>, <code>1648 bits</code>, <code>2048 bits</code>, and <code>4096 bits</code>.
+By default, the YAET sets the key size to <em>1648 bits</em>, equivalent to <em>206 bytes</em>, a suitable choice to ensure compatibility with a maximum input limit of <strong>140 characters</strong>.
+The maximum bytes it can take is limited to 206 bytes because the default algorithm scheme (explained later on) for encryption is <em>66 bytes</em>.</p>
+<p>Upon generating the key pairs, YAET provides the option to either display the output on standard output or save it as a file.
+The private key file is named according to the provided filename, while the public key file appends <code>.pub</code> as its suffix for easy identification.</p>
+<p>The process remains consistent for both the signing and verifying keys.
+However, the filenames are differentiated to indicate their respective functions.
+The signing key appends <code>.sig</code> as its suffix, while the verifying key includes <code>.sig.pub</code> to denote its purpose.</p>
+<h4 id="encryption"><a class="doc-anchor" href="#encryption">§</a>Encryption</h4>
+<p>The generated keys can then be used to encrypt and decrypt messages securely using <strong>RSA-OAEP (Optimal Asymmetric Encryption Padding)</strong>, a trusted encryption scheme that combines the RSA algorithm with Optimal Asymmetric Encryption Padding for enhanced security.
+By default, it utilizes <strong>SHA256</strong> for the OAEP padding, a robust hashing algorithm recognized for its reliability because it’s a standard.</p>
+<p>The encryption process requires the receiver’s public key (for encryption) and the sender’s signing key (for verification).</p>
+<h4 id="signature"><a class="doc-anchor" href="#signature">§</a>Signature</h4>
+<p>YAET uses “blinded” RSASSA-PSS signatures by default outlined in <a href="https://datatracker.ietf.org/doc/draft-irtf-cfrg-rsa-blind-signatures/">draft-irtf-cfrg-rsa-blind-signatures</a> for its integrity.
+Similarly with encryption process, the signature is also hashed with <em>SHA256</em>.</p>
+<p>The signature is appended to the encrypted message and concatenated together to form the complete message.
+This ensures that both the encrypted content and its corresponding signature are treated as a single entity, for convenient transmission and verification processes.</p>
+<h4 id="decryption"><a class="doc-anchor" href="#decryption">§</a>Decryption</h4>
+<p>During the decryption process, the encrypted content is divided into two distinct components: the encrypted message and the signature.
+This would require the sender’s verification key (for integrity, which the key is publicly available) and the receiver’s private key (for decryption).</p>
+<h4 id="verification"><a class="doc-anchor" href="#verification">§</a>Verification</h4>
+<p>During the decryption process, if the verification of the signature fails, the decrypted message contents will not be shown.
+This ensures that only authenticated and verified messages are presented to the user, maintaining the integrity and security of the communication.</p>
+<h3 id="contributing"><a class="doc-anchor" href="#contributing">§</a>Contributing</h3>
+<p>Contributions are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue or submit a pull request.</p>
+<h3 id="license"><a class="doc-anchor" href="#license">§</a>License</h3>
+<p>This project is licensed under the MIT License - see the <a href="https://github.com/0x42697262/yaet/blob/main/LICENSE">LICENSE</a> file for details.</p>
+<h3 id="similar-projects"><a class="doc-anchor" href="#similar-projects">§</a>Similar Projects</h3>
+<ul>
+<li><a href="https://github.com/gebmecod/RSA-encryption">https://github.com/gebmecod/RSA-encryption</a> - A quick and easy way to encrypt your data written in Python</li>
+<li><a href="https://github.com/sycasec/rsa_oaep">https://github.com/sycasec/rsa_oaep</a> - A more advanced set of features written in Python</li>
+<li><a href="https://github.com/kyle-gonzales/cmsc134mp2-diez_gonzales_pulvera">https://github.com/kyle-gonzales/cmsc134mp2-diez_gonzales_pulvera</a> - An attempt to build a chat app implemented in Python</li>
+<li><a href="https://github.com/GoodyCarlo/cmsc134-mp2">https://github.com/GoodyCarlo/cmsc134-mp2</a> - Implements secure message encryption, signing, and decryption with detailed examples and explanations regarding threat vectors
+Helper functions are defined here.</li>
+</ul>
+</div></details><h2 id="functions" class="section-header">Functions<a href="#functions" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.append_to_path.html" title="fn yaet::utils::append_to_path">append_to_path</a></div><div class="desc docblock-short">Appends a string <code>suffix</code> to a path <code>path</code> and returns the resulting <code>PathBuf</code>.</div></li><li><div class="item-name"><a class="fn" href="fn.decrypt_message_rsa_oaep.html" title="fn yaet::utils::decrypt_message_rsa_oaep">decrypt_message_rsa_oaep</a></div><div class="desc docblock-short">Decrypts a message encrypted using RSA-OAEP.</div></li><li><div class="item-name"><a class="fn" href="fn.encrypt_message_rsa_oaep.html" title="fn yaet::utils::encrypt_message_rsa_oaep">encrypt_message_rsa_oaep</a></div><div class="desc docblock-short">Encrypts a message using RSA-OAEP.</div></li><li><div class="item-name"><a class="fn" href="fn.generate_decrypted_message.html" title="fn yaet::utils::generate_decrypted_message">generate_decrypted_message</a></div><div class="desc docblock-short">Decrypts a previously encrypted and signed message.</div></li><li><div class="item-name"><a class="fn" href="fn.generate_encrypted_message.html" title="fn yaet::utils::generate_encrypted_message">generate_encrypted_message</a></div><div class="desc docblock-short">Encrypts then signs a plain text message.</div></li><li><div class="item-name"><a class="fn" href="fn.generate_private_key.html" title="fn yaet::utils::generate_private_key">generate_private_key</a></div><div class="desc docblock-short">Generate a Private RSA key</div></li><li><div class="item-name"><a class="fn" href="fn.generate_public_key.html" title="fn yaet::utils::generate_public_key">generate_public_key</a></div><div class="desc docblock-short">Generate a Public RSA key</div></li><li><div class="item-name"><a class="fn" href="fn.print_raw_data.html" title="fn yaet::utils::print_raw_data">print_raw_data</a></div></li><li><div class="item-name"><a class="fn" href="fn.read_input.html" title="fn yaet::utils::read_input">read_input</a></div></li><li><div class="item-name"><a class="fn" href="fn.read_input_raw.html" title="fn yaet::utils::read_input_raw">read_input_raw</a></div></li><li><div class="item-name"><a class="fn" href="fn.sign_message_with_rsassa_pss.html" title="fn yaet::utils::sign_message_with_rsassa_pss">sign_message_with_rsassa_pss</a></div><div class="desc docblock-short">Signs a message using the RSASSA-PSS signature scheme with blinding for enhanced security.</div></li><li><div class="item-name"><a class="fn" href="fn.verify_message_with_rsassa_pss.html" title="fn yaet::utils::verify_message_with_rsassa_pss">verify_message_with_rsassa_pss</a></div><div class="desc docblock-short">Verifies the authenticity of a message using the RSASSA-PSS signature scheme.</div></li></ul></section></div></main></body></html>

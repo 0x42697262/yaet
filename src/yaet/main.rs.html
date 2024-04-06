@@ -287,18 +287,6 @@
 <a href="#285" id="285">285</a>
 <a href="#286" id="286">286</a>
 <a href="#287" id="287">287</a>
-<a href="#288" id="288">288</a>
-<a href="#289" id="289">289</a>
-<a href="#290" id="290">290</a>
-<a href="#291" id="291">291</a>
-<a href="#292" id="292">292</a>
-<a href="#293" id="293">293</a>
-<a href="#294" id="294">294</a>
-<a href="#295" id="295">295</a>
-<a href="#296" id="296">296</a>
-<a href="#297" id="297">297</a>
-<a href="#298" id="298">298</a>
-<a href="#299" id="299">299</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>clap::{builder::PossibleValuesParser, Parser};
 <span class="kw">use </span>std::path::PathBuf;
 
@@ -480,19 +468,19 @@ This prototype tool is intended solely for educational purposes within the CMSC 
 ///
 /// # Arguments
 ///
-/// - `cli`: An instance of the `Cli` struct containing parsed command line arguments.
+/// - `cli`: An instance of the [Cli][`Cli`] struct containing parsed command line arguments.
 ///
 /// # Command Handling
 ///
-/// The function matches the command specified in the `Params` enum and executes the corresponding logic:
+/// The function matches the command specified in the [Params][`Params`] enum and executes the corresponding logic:
 ///
-/// - **Encrypt**: Reads the input message from a file, encrypts it using the provided public key and signing key, and optionally saves the encrypted message to an output file.
-/// - **Decrypt**: Reads the encrypted message from a file, decrypts it using the provided private key and verifying key, and optionally saves the decrypted message to an output file. It also supports skipping signature verification if specified.
-/// - **Generate**: Generates private and public RSA key pairs and private and public signature key pairs, saving them to specified output files.
+/// - **[Encrypt][`EncryptArgs`]**: Reads the input message from a file, encrypts it using the provided public key and signing key, and optionally saves the encrypted message to an output file.
+/// - **[Decrypt][`DecryptArgs`]**: Reads the encrypted message from a file, decrypts it using the provided private key and verifying key, and optionally saves the decrypted message to an output file. It also supports skipping signature verification if specified.
+/// - **[Generate][`GenerateArgs`]**: Generates private and public RSA key pairs and private and public signature key pairs, saving them to specified output files.
 ///
 /// # Debug Mode
 ///
-/// If debug mode is enabled (`cli.debug`), the function prints debug information including input/output paths and skip verification flag.
+/// If debug mode is enabled ([cli.debug][`Cli::debug`]), the function prints debug information including input/output paths and skip verification flag.
 ///
 /// # Errors
 ///
@@ -518,9 +506,7 @@ This prototype tool is intended solely for educational purposes within the CMSC 
             <span class="kw">let </span>raw_message: <span class="kw-2">&amp;</span>[u8] = message.as_bytes();
             <span class="kw">match </span>utils::generate_encrypted_message(raw_message, <span class="kw-2">&amp;</span>public_key, <span class="kw-2">&amp;</span>signature, <span class="kw-2">&amp;</span>output) {
                 <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
-                <span class="prelude-val">Err</span>(err) =&gt; {
-                    <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err);
-                }
+                <span class="prelude-val">Err</span>(err) =&gt; <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err),
             }
         }
 
@@ -547,9 +533,7 @@ This prototype tool is intended solely for educational purposes within the CMSC 
                 skip_verification,
             ) {
                 <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
-                <span class="prelude-val">Err</span>(err) =&gt; {
-                    <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err)
-                }
+                <span class="prelude-val">Err</span>(err) =&gt; <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err),
             }
         }
 
@@ -566,15 +550,11 @@ This prototype tool is intended solely for educational purposes within the CMSC 
 
             <span class="kw">match </span>utils::generate_private_key(<span class="kw-2">&amp;</span>output, bits) {
                 <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
-                <span class="prelude-val">Err</span>(err) =&gt; {
-                    <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err)
-                }
+                <span class="prelude-val">Err</span>(err) =&gt; <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err),
             }
             <span class="kw">match </span>utils::generate_public_key(<span class="kw-2">&amp;</span>output) {
                 <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
-                <span class="prelude-val">Err</span>(err) =&gt; {
-                    <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err)
-                }
+                <span class="prelude-val">Err</span>(err) =&gt; <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err),
             }
 
             <span class="macro">println!</span>(<span class="string">"Saved {:?}"</span>, output.as_path());
@@ -583,15 +563,11 @@ This prototype tool is intended solely for educational purposes within the CMSC 
             <span class="kw">let </span>output_signature: PathBuf = utils::append_to_path(output, <span class="string">".sig"</span>);
             <span class="kw">match </span>utils::generate_private_key(<span class="kw-2">&amp;</span>output_signature, bits) {
                 <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
-                <span class="prelude-val">Err</span>(err) =&gt; {
-                    <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err)
-                }
+                <span class="prelude-val">Err</span>(err) =&gt; <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err),
             }
             <span class="kw">match </span>utils::generate_public_key(<span class="kw-2">&amp;</span>output_signature) {
                 <span class="prelude-val">Ok</span>(<span class="kw">_</span>) =&gt; {}
-                <span class="prelude-val">Err</span>(err) =&gt; {
-                    <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err)
-                }
+                <span class="prelude-val">Err</span>(err) =&gt; <span class="macro">eprint!</span>(<span class="string">"{}"</span>, err),
             }
 
             <span class="macro">println!</span>(<span class="string">"Saved {:?}"</span>, output_signature.as_path());
